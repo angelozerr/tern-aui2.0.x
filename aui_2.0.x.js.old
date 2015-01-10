@@ -99,7 +99,7 @@
           }
           yui.propagate(Y);
 
-          var cx = infer.cx(), defs = cx.definitions["yui"];
+          var cx = infer.cx(), defs = cx.definitions["aui_2"];
           for ( var name in defs) {
               defs[name].getType().propagate(Y);
           }
@@ -10911,4 +10911,6 @@
   }
  }
 }
+}
+
 });
