@@ -27,8 +27,8 @@
   <script src="ternjs/tern/lib/comment.js"></script>
   <script src="ternjs/tern/lib/infer.js"></script>
   
-  <script src="yui_3.js"></script>
-  <script src="../aui_2.0.x.js"></script>
+  <script src="../yui3.js"></script>
+  <script src="../aui2.0.x.js"></script>
   
   <!-- Official CodeMirror Tern addon -->
   <script src="codemirror/addon/tern/tern.js"></script>   
@@ -61,7 +61,7 @@
   <body>
     
     <h1>Demo with AlloyUI Tern plugin </h1>
-	<p>See <a href="https://github.com/angelozerr/tern.yuidoc">https://github.com/angelozerr/tern.yuidoc</a> for more infos.</p>  
+	<p>See <a href="https://github.com/angelozerr/tern-aui2.0.x">https://github.com/angelozerr/tern-aui2.0.x</a> for more infos.</p>    
     <form><textarea id="code" name="code">Y //<-Ctrl+Space shows YUI
 YUI().use(
   'aui-ace-editor',
@@ -112,7 +112,7 @@ YUI().use(
         },
         gutters: ["CodeMirror-linenumbers"],
     	textHover: {delay:300},
-    	ternWith: { plugins: {"yui_3" : {}, "aui_2.0.x" : {}}}
+    	ternWith: { plugins: {"yui3" : {}, "aui2.0.x" : {}}}
       });
     </script>
     
