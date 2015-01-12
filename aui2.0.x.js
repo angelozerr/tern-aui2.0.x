@@ -15,7 +15,7 @@
   var defs = {
  "!name": "aui2.0.x",
  "!define": {
-  "!yui": {
+  "_yui": {
    "aui_ace_editor": {
     "A": {
      "AutoCompleteBase": {
@@ -236,7 +236,7 @@
       }
      },
      "AceEditor": {
-      "!type": "fn(config: +Object) -> +aui_ace_editor.A.AceEditor",
+      "!type": "fn(config: +Object) -> +_yui.aui_ace_editor.A.AceEditor",
       "prototype": {
        "!proto": "A.Widget.prototype",
        "height": {
