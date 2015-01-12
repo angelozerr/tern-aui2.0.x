@@ -1,33 +1,33 @@
 var util = require("./util");
 
 exports['test YUI completion'] = function() {
-	util.assertCompletion("Y", {
-	    "start":{"line":0,"ch":0},
-	    "end":{"line":0,"ch":1},
-	    "isProperty":false,
-	    "completions":[{"name":"YUI","type":"fn() -> yui.YUI",
-	    "origin":"yui3"}]
-	});
+  util.assertCompletion("Y", {
+    "start":{"line":0,"ch":0},
+	"end":{"line":0,"ch":1},
+    "isProperty":false,
+    "completions":[{"name":"YUI","type":"fn() -> yui.YUI",
+    "origin":"yui3"}]
+  });
 }
 
 exports['test YUI().use completion'] = function() {
-	util.assertCompletion("YUI().u", {
-	    "start":{"line":0,"ch":6},
-	    "end":{"line":0,"ch":7},
-	    "isProperty":true,
-	    "completions":[{"name":"use","type":"fn(modules: string, callback?: fn(Y: yui.YUI))",
-	    "origin":"yui3"}]
-	});
+  util.assertCompletion("YUI().u", {
+    "start":{"line":0,"ch":6},
+    "end":{"line":0,"ch":7},
+    "isProperty":true,
+    "completions":[{"name":"use","type":"fn(modules: string, callback?: fn(Y: yui.YUI))",
+      "origin":"yui3"}]
+    });
 }
 
 exports['test Y.one completion'] = function() {
-	util.assertCompletion("YUI().use('', function(Y) { Y.one", {
-	    "start":{"line":0,"ch":30},
-	    "end":{"line":0,"ch":33},
-	    "isProperty":true,
-	    "completions":[{"name":"one","type":"fn(node: string) -> node.Node",
-	    "origin":"yui3"}]
-	});
+  util.assertCompletion("YUI().use('', function(Y) { Y.one", {
+    "start":{"line":0,"ch":30},
+    "end":{"line":0,"ch":33},
+    "isProperty":true,
+    "completions":[{"name":"one","type":"fn(node: string) -> node.Node",
+    "origin":"yui3"}]
+  });
 }
 
 exports['test !proto completion'] = function() {
