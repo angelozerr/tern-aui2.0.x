@@ -4,7 +4,7 @@ exports['test Y.AceEditor completion'] = function() {
   // check AceEditor
   util.assertCompletion("YUI().use('', function(Y) { new Y.A", {
     "name":"AceEditor",
-    "type":"fn(config: Object)",
+    "type":"fn(config: Object) -> _yui.aui_ace_editor.A.AceEditor",
     "origin":"aui2.0.x"
   }, "AceEditor");
   
