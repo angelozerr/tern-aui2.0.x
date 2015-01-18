@@ -13,6 +13,7 @@ exports['test Y.AceEditor completion'] = function() {
     "start":{"line":0,"ch":48},
     "end":{"line":0,"ch":52},
     "isProperty":true,
+    "isObjectKey":false,
     "completions":[{"name":"getEditor","type":"fn()","origin":"aui2.0.x"}]
   });  
 }
