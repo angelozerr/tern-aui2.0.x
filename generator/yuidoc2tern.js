@@ -23,7 +23,7 @@
     // Iterate over all class items
     for ( var i = 0; i < yuiDoc.classitems.length; i++) {
       var yuiClassItem = yuiDoc.classitems[i];
-      if (isAccess(yuiClassItem)) {
+      if (isAccess(yuiClassItem, this.options.isSubModule)) {
     	if (isEventType(yuiClassItem)) {
     		// TODO : add event inside !data
     	} else {
@@ -52,7 +52,7 @@
     // !doc
     var doc = getDescription(yuiClassItem);
     // !url
-    var url = null;
+    var url = this.options.baseURL ? getURL(this.options.baseURL, className, yuiClassItem.itemtype, name) : null;
     createTernDefItem(ternClassItem, name, type, proto, effects, url, doc);	
   }
   
@@ -63,33 +63,37 @@
 	return getTernType(yuiClass, yuiDoc, this.options.isSubModule);
   }
   
-  Generator.prototype.getTernClass = function(className, parent, yuiDoc) {
+  Generator.prototype.getTernClass = function(className, parent, yuiDoc, fullClassName) {
 	// get name
     var name = className;
     if (className.indexOf('.') != -1) {
       var names = className.split('.'), length = names.length -1;
+      var locFullClassName = "";
       for (var i = 0; i < length; i++) {
-        parent = this.getTernClass(names[i], parent, yuiDoc);
+        if (i > 0) locFullClassName+=".";
+        locFullClassName+=names[i];
+        parent = this.getTernClass(names[i], parent, yuiDoc, locFullClassName);
       }
       name = names[length];
     }
     
     var ternClass = parent[name];
     if (!ternClass) {
-      var yuiClass = yuiDoc.classes[className];
+      var yuiClass = fullClassName ? yuiDoc.classes[fullClassName] : yuiDoc.classes[className], type, proto, effects, doc, url;
+      if (!yuiClass) yuiClass = yuiDoc.classes[className]
       if (yuiClass) {
         // !type
-        var type = this.getTernType(yuiClass, yuiDoc);      
+        type = this.getTernType(yuiClass, yuiDoc);      
         // !proto
-        var proto = this.getProto(yuiClass, yuiDoc);
-        var effects = null;
+        proto = this.getProto(yuiClass, yuiDoc);
+        effects = null;
         // !doc
-        var doc = null;
+        doc = null;
         // if (yuiClass.description)
           //  ternClass["!doc"] = yuiClass.description;
         // !url
-        var url = null;
-        }
+        url = this.options.baseURL ? getURL(this.options.baseURL, className) : null;
+      }
       ternClass = createTernDefItem(parent, name, type, proto, effects, url, doc);
     }    
     return ternClass;
@@ -104,7 +108,10 @@
     return ternPrototype;
   }  
   
-  var isAccess = function(yuiClassItem) {
+  var isAccess = function(yuiClassItem, isSubModule) {
+    if (isSubModule && yuiClassItem.file && startsWith(yuiClassItem.file, "yui3")) {
+      return false;
+    }
     var access = yuiClassItem["access"];
     return access != 'private' && access != 'protected';
   }
@@ -119,6 +126,23 @@
 	if (!description) return null;
 	description = description.replace(/['$']/g, "");
 	return description;
+  }
+  
+  var getURL = function(baseURL, className, itemtype, name) {
+    var url = baseURL;
+    if (!endsWith(baseURL, '/')) {
+      url += '/';
+    }
+    url += 'classes/';
+    url += className;
+    url += '.html';
+    if (itemtype && name) {
+      url += '#';
+      url += itemtype;
+      url += '_';
+      url += name;
+    }
+    return url;
   }
   
   var getTernModule = function(moduleName, ternDef, isSubModule) {
@@ -148,10 +172,6 @@
   
   // YUI -> Tern type
   
-  var startsWith = function (str, prefix) {
-    return str.slice(0, prefix.length) == prefix;
-  }
-  
   var getFirstPart = function(yuiType, c) {
     var index = yuiType.indexOf(c);
 	if (index != -1) {
@@ -166,11 +186,11 @@
     var index = -1;
     
     // ex : {ArrayList|Widget} or {Any}
-	if (startsWith(yuiType, '{')) {
-		index = yuiType.indexOf('}');
-		yuiType = yuiType.substring(1, index != -1 ? index : yuiType.length);
-		yuiType = yuiType.trim();
-	}    
+    if (startsWith(yuiType, '{')) {
+      index = yuiType.indexOf('}');
+      yuiType = yuiType.substring(1, index != -1 ? index : yuiType.length);
+      yuiType = yuiType.trim();
+    }    
     // ex : Node|String
     yuiType = getFirstPart(yuiType, '|');    
     // ex : Node/NodeList
@@ -230,10 +250,12 @@
     type += ')';
     if (isChainable) {
       type += ' -> !this';
-    } else if (isConstructor) {
+    }
+    /*else if (isConstructor) {
       type += ' -> +';
       type += getClassName(className, yuiDoc, isSubModule);
-    } else if (returnValue) {
+    }*/
+     else if (returnValue) {
       type += ' -> ';
       type += getPropertyTernType(returnValue.type, returnValue.props, yuiDoc);
     }
@@ -271,17 +293,16 @@
   }
 
   var getModuleName = function(yuiClassItem, yuiDoc) {
-	  var className = yuiClassItem["class"];
-	  var yuiClass = yuiDoc.classes[className];
-	  var moduleName = yuiClass ? yuiClass["module"] : yuiClassItem["module"];
-	  return moduleName.replace(/-/g, '_');
+    var className = yuiClassItem["class"];
+    var yuiClass = yuiDoc.classes[className];
+    var moduleName = yuiClass ? yuiClass["module"] : yuiClassItem["module"];
+    return moduleName.replace(/-/g, '_');
   }
   
   var getClassName = function(className, yuiDoc, isSubModule) {
     var yuiClass = yuiDoc.classes[className];
     if (yuiClass && yuiClass.module) {
-      var name = isSubModule ? '_yui.' : '';
-      name += yuiClass.module.replace(/-/g, '_') + '.' + className;
+      var name = yuiClass.module.replace(/-/g, '_') + '.' + className;
       return name;
     }
     return className;
@@ -331,7 +352,11 @@
     return t;
   }
 
-  function endsWith(str, suffix) {
+  var startsWith = function(str, prefix) {
+    return str.slice(0, prefix.length) == prefix;
+  }
+  
+  var endsWith = function(str, suffix) {
     return str.slice(-suffix.length) == suffix;
   }  
     

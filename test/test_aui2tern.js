@@ -2,17 +2,17 @@ var util = require("./util"), assert = require('assert');
 
 var yuiDef = util.generateDef();
 
-// Test with http://yuilibrary.com/yui/docs/api/classes/Anim.html
+// Test with http://alloyui.com/versions/2.0.x/api/classes/A.AceEditor.html
 
-/*exports['test admin.Anim'] = function() {
-  var Anim = yuiDef["!define"]["anim"]["Anim"];
-  assert.notEqual(Anim, null, 'cannot find anim.Anim');
-  assert.equal(Anim["!type"], "fn() -> +anim.Anim");
-  // extends Base
-  assert.equal(Anim["prototype"]["!proto"], "base.Base.prototype");
+exports['test _yui.aui_ace_editor.A.AceEditor'] = function() {
+  var AceEditor = yuiDef["!define"]["_yui"]["aui_ace_editor"]["A"]["AceEditor"];
+  assert.notEqual(AceEditor, null, 'cannot find _yui.aui_ace_editor.A.AceEditor');
+  assert.equal(AceEditor["!type"], "fn(config: +yui.Object)");
+  // extends Widget of YUI3
+  assert.equal(AceEditor["prototype"]["!proto"], "widget.Widget.prototype");
 }
 
-exports['test app.App'] = function() {
+/*exports['test app.App'] = function() {
   var App = yuiDef["!define"]["app"]["App"];
   assert.notEqual(App, null, 'cannot find app.App');
   assert.equal(App["!type"], "fn(config?: +yui.Object) -> +app.App");
