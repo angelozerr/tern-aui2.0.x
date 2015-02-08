@@ -7,7 +7,7 @@ var yuiDef = util.generateDef();
 exports['test _yui.aui_ace_editor.A.AceEditor'] = function() {
   var AceEditor = yuiDef["!define"]["_yui"]["aui_ace_editor"]["A"]["AceEditor"];
   assert.notEqual(AceEditor, null, 'cannot find _yui.aui_ace_editor.A.AceEditor');
-  assert.equal(AceEditor["!type"], "fn(config: +yui.Object)");
+  assert.equal(AceEditor["!type"], "fn(config: +config.A.AceEditorConfig)");
   // extends Widget of YUI3
   assert.equal(AceEditor["prototype"]["!proto"], "widget.Widget.prototype");
 }
