@@ -1,5 +1,7 @@
 var util = require("./util");
 
+// See http://alloyui.com/versions/2.0.x/api/classes/A.AceEditor.html
+
 exports['test Y.AceEditor completion'] = function() {
   // check AceEditor
   util.assertCompletion("YUI().use('', function(Y) { new Y.A", {
@@ -68,29 +70,49 @@ exports['test Y.AceEditor extends Widget completion'] = function() {
   }); 
 }
 
-// see https://github.com/angelozerr/tern-aui2.0.x/issues/8
+// See https://github.com/angelozerr/tern-aui2.0.x/issues/8
+//     https://github.com/angelozerr/tern-aui2.0.x/issues/18
 exports['test Y.AceEditor Config Object Literal'] = function() {
   
   // Widget of YUI3 provides render, AceEditor inherits from this methods.
-  // check methods of AceEditor
+  // check object literal properties of AceEditor
   util.assertCompletion("YUI().use('', function(Y) { new Y.AceEditor({", {
     "start":{"line":0,"ch":45},
     "end":{"line":0,"ch":45},
     "isProperty":true,
     "isObjectKey":true,
-    "completions":[{"name":"height","type":"number","origin":"aui2.0.x"},
+    "completions":[{"name":"boundingBox","type":"string","origin":"yui3"},
+                   {"name":"contentBox","type":"string","origin":"yui3"},
+                   {"name":"disabled","type":"bool","origin":"yui3"},
+                   {"name":"focused","type":"bool","origin":"yui3"},
+                   {"name":"height","type":"number","origin":"aui2.0.x"},
                    {"name":"highlightActiveLine","type":"bool","origin":"aui2.0.x"},
+                   {"name":"id","type":"string","origin":"yui3"},
                    {"name":"mode","type":"string","origin":"aui2.0.x"},
                    {"name":"readOnly","type":"bool","origin":"aui2.0.x"},
+                   {"name":"render","type":"bool","origin":"yui3"},
+                   {"name":"rendered","type":"bool","origin":"yui3"},
                    {"name":"showPrintMargin","type":"bool","origin":"aui2.0.x"},
+                   {"name":"srcNode","type":"string","origin":"yui3"},
+                   {"name":"strings","type":"yui.Object","origin":"yui3"},
+                   {"name":"tabIndex","type":"number","origin":"yui3"},
                    {"name":"tabSize","type":"number","origin":"aui2.0.x"},
                    {"name":"useSoftTabs","type":"bool","origin":"aui2.0.x"},
                    {"name":"useWrapMode","type":"bool","origin":"aui2.0.x"},
                    {"name":"value","type":"string","origin":"aui2.0.x"},
+                   {"name":"visible","type":"bool","origin":"yui3"},
                    {"name":"width","type":"number","origin":"aui2.0.x"}
                   ]
   });    
 
+  util.assertCompletion("YUI().use('', function(Y) { new Y.AceEditor({b", {
+    "start":{"line":0,"ch":45},
+    "end":{"line":0,"ch":46},
+    "isProperty":true,
+    "isObjectKey":true,
+    "completions":[{"name":"boundingBox","type":"string","origin":"yui3"}                   
+                  ]
+  }); 
 }
 
 if (module == require.main) require("test").run(exports);
