@@ -4,7 +4,7 @@
 
 [tern-aui2.0.x](https://github.com/angelozerr/tern-aui2.0.x) is a plugin which adds support for [AlloyUI 2.0.x](http://alloyui.com/versions/2.0.x/) to the JavaScript code intelligence system [Tern](http://ternjs.net/).
 
-Please read [Features](https://github.com/angelozerr/tern-aui2.0.x/wiki/Features) to see the whole feature of this tern plugin.
+Please read [Features](https://github.com/angelozerr/tern-aui2.0.x/wiki/Features) section to see the whole feature of this tern plugin.
 
 ## Demo
 
@@ -12,7 +12,7 @@ You can see demo with CodeMirror (inside Web Browser) [demos/aui.html](https://g
 
 ![CodeMirror & Y Modules](https://github.com/angelozerr/tern-aui2.0.x/wiki/images/CodeMirror_CompletionForYModules.png)
 
-If you wish to use Eclipse as IDE, see Eclipse support for [AlloyUI support](https://github.com/angelozerr/tern.java/wiki/Tern-&-AlloyUI-support).
+If you wish to use Eclipse as IDE, see [Eclipse AlloyUI support](https://github.com/angelozerr/tern.java/wiki/Tern-&-AlloyUI-support).
 
 ![Eclipse & Y Modules](https://github.com/angelozerr/tern-aui2.0.x/wiki/images/Eclipse_CompletionForYModules.png)
 
@@ -20,7 +20,7 @@ If you wish to use Eclipse as IDE, see Eclipse support for [AlloyUI support](htt
 
 `tern-aui2.0.x` works with the NodeJS [tern-server(http://ternjs.net/doc/manual.html#server), and within a browser. It depends on :
 
- * brower and ecma5 JSON Type Definitions coming from the tern.
+ * `brower` and `ecma5` JSON Type Definitions coming from the tern.
  * [yui3](https://github.com/angelozerr/tern-yui3) tern plugin.
 
 ### Short version
@@ -49,11 +49,7 @@ See [INSTALL.md](INSTALL.md) for instructions tailored to each editor.
 In order for Tern to load the tern-aui2.0.x plugin once it is installed, you must
 include `aui2.0.x` in the `plugins` section of your [Tern configuration
 file][tern-config]. The configuration file can be either a file named
-`.tern-project` in your project's root directory, or `.tern-config` in your home
-directory.
-
-You must also explicitly disable the default `doc_comment` plugin, which will
-interfere with tern-aui2.0.x.
+`.tern-project` in your project's root directory, or `.tern-config` in your home directory.
 
 Here is a minimal example `.tern-project` configuration file:
 
