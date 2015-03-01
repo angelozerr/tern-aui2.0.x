@@ -48,7 +48,7 @@ See [INSTALL.md](INSTALL.md) for instructions tailored to each editor.
 
 In order for Tern to load the tern-aui2.0.x plugin once it is installed, you must
 include `aui2.0.x` in the `plugins` section of your [Tern configuration
-file][tern-config]. The configuration file can be either a file named
+file](http://ternjs.net/doc/manual.html#configuration). The configuration file can be either a file named
 `.tern-project` in your project's root directory, or `.tern-config` in your home directory.
 
 Here is a minimal example `.tern-project` configuration file:
