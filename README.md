@@ -18,7 +18,7 @@ If you wish to use Eclipse as IDE, see [Eclipse AlloyUI support](https://github.
 
 ## <a name="installation"></a> Installation
 
-`tern-aui2.0.x` works with the NodeJS [tern-server(http://ternjs.net/doc/manual.html#server), and within a browser. It depends on :
+`tern-aui2.0.x` works with the NodeJS [tern-server](http://ternjs.net/doc/manual.html#server), and within a browser. It depends on :
 
  * `brower` and `ecma5` JSON Type Definitions coming from the tern.
  * [yui3](https://github.com/angelozerr/tern-yui3) tern plugin.
