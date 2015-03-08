@@ -81,7 +81,36 @@ See [demos/aui.html](https://github.com/angelozerr/tern-aui2.0.x/blob/master/dem
 
 ### Introduction
 
-TODO
+The tern plugin [aui2.0.x.js](https://github.com/angelozerr/tern-aui2.0.x/blob/master/aui2.0.x.js) is generated from the JavaScript sources of [AlloyUI 2.0.x](https://github.com/liferay/alloy-ui/tree/2.0.x). Process of this generation is : 
+
+ * AlloyUI sources uses [YUIDoc](http://yui.github.io/yuidoc/) comments. [YUIDoc](http://yui.github.io/yuidoc/) is able to generate a JSON representation of JavaScript sources. In this project, we use the this [api.json](https://github.com/angelozerr/tern-aui2.0.x/blob/master/generator/data/api.json) which is a copy/paste of the online [data.json](http://alloyui.com/versions/2.0.x/api/data.json). 
+ * generate JSON Type Definition from [api.json](https://github.com/angelozerr/tern-aui2.0.x/blob/master/generator/data/api.json) (YUIDoc format) by using the transformer [aui2tern.js](https://github.com/angelozerr/tern-aui2.0.x/blob/master/generator/aui2tern.js). Note that you can debug with Chrome this transformer by opening [aui2tern.html](https://github.com/angelozerr/tern-aui2.0.x/blob/master/generator/html/aui2tern.html).
+ * generate the tern plugin by using the generated JSON Type Definition by calling :
+ 
+`node generator/node/make_plugin` 
+ 
+### Instruction 
+
+Here the steps : 
+  
+* open cmd  
+* `cd $HOME/tern-aui2.0.x`
+* Generate the tern plugin **aui2.0.x** from [api.json](https://github.com/angelozerr/tern-aui2.0.x/blob/master/generator/data/api.json), by launching :
+ 
+`node generator/node/make_plugin`
+	
+* You can execute tests with
+ 	
+`node test/all` 	
+
+### Advanced informations
+
+JS sources are sometimes NOT well annotated, so it misses some information (some return function, parameter type, etc). The [generator/dox2tern_mongodb.js](generator/dox2tern_mongodb.js) gives the capability to override information of JS sources.
+
+If you wish to work on the dox JSON Representation (api.json) to tern JSON Type Definition, you can open the HTML page [generator/html/dox2tern.html](generator/html/dox2tern.html)
+
+See [Contributing](https://github.com/angelozerr/tern-node-mongoose/wiki/Contributing) for more information
+
 
 ## Structure
 
