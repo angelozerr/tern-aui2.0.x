@@ -18,7 +18,7 @@ If you wish to use Eclipse as IDE, see [Eclipse AlloyUI support](https://github.
 
 ## <a name="installation"></a> Installation
 
-`tern-aui2.0.x` works with the NodeJS [tern-server(http://ternjs.net/doc/manual.html#server), and within a browser. It depends on :
+`tern-aui2.0.x` works with the NodeJS [tern-server](http://ternjs.net/doc/manual.html#server), and within a browser. It depends on :
 
  * `brower` and `ecma5` JSON Type Definitions coming from the tern.
  * [yui3](https://github.com/angelozerr/tern-yui3) tern plugin.
@@ -48,7 +48,7 @@ See [INSTALL.md](INSTALL.md) for instructions tailored to each editor.
 
 In order for Tern to load the tern-aui2.0.x plugin once it is installed, you must
 include `aui2.0.x` in the `plugins` section of your [Tern configuration
-file][tern-config]. The configuration file can be either a file named
+file](http://ternjs.net/doc/manual.html#configuration). The configuration file can be either a file named
 `.tern-project` in your project's root directory, or `.tern-config` in your home directory.
 
 Here is a minimal example `.tern-project` configuration file:
