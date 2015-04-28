@@ -11,6 +11,8 @@
       "name" : "aui2.0.x",
       "initialize" : initialize,
       "getType" : getType,
+      "getForClass": getForClass,
+      "isIgnoreClassItem": isIgnoreClassItem,
       "baseURL" : "http://alloyui.com/versions/2.0.x/api/",
       "isSubModule": true
     };
@@ -25,4 +27,15 @@
   var getType = function(moduleName, className, name) {
   }
   
+  var isIgnoreClassItem = function(yuiClassItem) {
+    if (yuiClassItem["class"] == "A.Node") {
+      return yuiClassItem["name"] == "ancestors" || yuiClassItem["name"] == "empty";
+    }
+    return false;
+  }
+  
+  var getForClass = function(className) {
+    if (className == "A.Node") return "node.Node";
+    if (className == "A.NodeList") return "node.NodeList";
+  }
 });  
