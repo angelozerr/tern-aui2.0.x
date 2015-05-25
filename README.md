@@ -8,7 +8,7 @@ Please read [Features](https://github.com/angelozerr/tern-aui2.0.x/wiki/Features
 
 ## Demo
 
-You can see demo with CodeMirror (inside Web Browser) [demos/aui.html](https://github.com/angelozerr/tern-aui2.0.x/blob/master/demos/aui.html) :
+You can play with [online demo](http://demo-angelozerr.rhcloud.com/CodeMirror-Java/aui2.0.x.html) or see demo with CodeMirror (inside Web Browser) [demos/aui.html](https://github.com/angelozerr/tern-aui2.0.x/blob/master/demos/aui.html) :
 
 ![CodeMirror & Y Modules](https://github.com/angelozerr/tern-aui2.0.x/wiki/images/CodeMirror_CompletionForYModules.png)
 
