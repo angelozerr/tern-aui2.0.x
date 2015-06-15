@@ -14,13 +14,17 @@
   },  
   "dependencies": {
     "tern": ">=0.10.0",
-    "acorn": ">=1.0.0"
+    "acorn": ">=1.0.0",
+    "tern-yui3": ">=0.1.0",
+    "tern-lint": ">=0.2.0"
   },
   "devDependencies": { 
-    "test": ">=0.0.5" 
+    "test": ">=0.0.5",
+    "codemirror": ">=5.3.0"
   },  
   "keywords": [
     "tern",
+    "YUI3",
     "AlloyUI"
   ]
 }
